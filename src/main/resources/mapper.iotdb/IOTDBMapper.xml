@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.iotdb.mapper.iotdb.IOTDBMapper">
+    <resultMap id="BaseResultMap" type="com.example.iotdb.entity.iotdb.MeasurementValue">
+        <result column="timeseries"  property="path" />
+        <result column="Time"  property="timestamp" />
+        <result column="value"  property="value" />
+    </resultMap>
+
+
+    <select id="getAllStorageGroup" resultType="string">
+        show storage group
+    </select>
+    <select id="getMeasurementPointLastValue" resultMap="BaseResultMap">
+        select last ${field} from ${path}
+    </select>
+
+
+    <update id="setStorageGroup">
+        set storage group to ${group}
+    </update>
+
+    <insert id="insert">
+        insert into ${p.path}
+        <foreach collection="p.field" item="f" separator="," open="(" close=")" index="">
+            ${f}
+        </foreach>
+        values
+        <foreach collection="p.fieldValue" item="fv" separator="," open="(" close=")" index="">
+            ${fv}
+        </foreach>
+    </insert>
+
+
+    <select id="selectField" resultMap="BaseResultMap">
+        select ${filed} as value
+        from ${path}
+    </select>
+
+    <insert id="createTimeseries">
+        create timeseries ${p.path} with datatype = ${p.dataType}, encoding = ${p.encoding}
+    </insert>
+
+    <delete id="delete">
+        delete from ${path} where time &lt;= ${t}
+    </delete>
+</mapper>
