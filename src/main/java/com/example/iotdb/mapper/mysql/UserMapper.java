@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @Author: Aiden
  */
-@Mapper
+/*@Mapper*/
 public interface UserMapper {
 
     List<User> getAllUsers();

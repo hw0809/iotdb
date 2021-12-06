@@ -67,22 +67,22 @@ public class IOTDBDataSourceConfig {
         return sqlSessionFactory;
     }
 
-    @Bean("mysqlDataSource")
+    /*@Bean("mysqlDataSource")
     public DataSource mysqlDataSource() {
         String driverClassName = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/demo_sql?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
         String username = "root";
         String password = "HUANHUAN1994904*";
         return getBasicDataSource(driverClassName, url, username, password);
-    }
+    }*/
 
 
     // 2. 配置多个SqlSessionFactoryBean
 
-    @Bean("mysqlSqlSessionFacotry")
+   /* @Bean("mysqlSqlSessionFacotry")
     public SqlSessionFactoryBean mysqlSqlSessionFactory(@Autowired @Qualifier("mysqlDataSource") DataSource dataSource)
             throws Exception {
-        /* SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder(). */
+        *//* SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder(). *//*
         // 与spring整合的过程中只需要SqlSessionFactoryBean这个对象
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setLogImpl((Class<? extends Log>) LOG_IMPL_CLASS);
@@ -91,12 +91,12 @@ public class IOTDBDataSourceConfig {
         sqlSessionFactory.setConfiguration(configuration);
         sqlSessionFactory.setDataSource(dataSource);
         //
-        /*
+        *//*
          * MapperScannerConfigurer scanner = new MapperScannerConfigurer();
          * scanner.setSqlSessionFactory(sqlSessionFactory.getObject());
          * scanner.setBasePackage("com.hy.springboot.test.mapper.mysql");
          * scanner.afterPropertiesSet();// 触发操作
-         */
+         *//*
         // 手动扫描映射文件
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         //sqlSessionFactory.setMapperLocations(new ClassPathResource("mapper/mysql/*.xml"));
@@ -113,7 +113,7 @@ public class IOTDBDataSourceConfig {
         // scanner.setSqlSessionFactory(sqlSessionFactory.getObject());
         scanner.setBasePackage("com.example.iotdb.mapper.mysql");
         return scanner;
-    }
+    }*/
 
     @Bean("iotdbMapperScanner")
     public MapperScannerConfigurer iotdbMapperScanner(

@@ -22,7 +22,10 @@ class IotDBApplicationTests {
     @Autowired
     private IOTDBMapper iotdbMapper;
 
-
+    @Test
+    void testGetMeasurementPointLastValue() {
+        System.out.println(iotdbMapper.getMeasurementPointLastValue("status", "root.sgcc.wf01.wt01"));
+    }
 
     @Test
     void testSetStorageGroup() {
